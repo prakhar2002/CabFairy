@@ -358,7 +358,7 @@ public class Profile extends Fragment {
         final ProgressDialog   progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        progressDialog.setCanceledOnTouchOutside(false);
+//        progressDialog.setCanceledOnTouchOutside(false);
         String  url= "http://expresscab.in/CarDriving/driver_Info.php?apicall=DriverProfilePic";
         Map<String, String> params = new HashMap<String, String>();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
