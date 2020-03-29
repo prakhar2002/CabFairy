@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:background="@drawable/round_blue">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:textSize="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:textSize="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:textSize="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rating's"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:textSize="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

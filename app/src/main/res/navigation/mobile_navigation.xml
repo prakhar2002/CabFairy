@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.prakhar.cabfairy.Home_Fragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.prakhar.cabfairy.Transaction_history"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/transcation_fragment" />
+
+
+        <fragment
+            android:id="@+id/nav_slideshow"
+            android:name="com.prakhar.cabfairy.Pay_commission"
+            android:label="@string/menu_slideshow"
+            tools:layout="@layout/pay_commission_fragment" />
+
+        <fragment
+            android:id="@+id/nav_tools"
+            android:name="com.prakhar.cabfairy.Performance"
+            android:label="@string/menu_tools"
+            tools:layout="@layout/performance_fragment" />
+
+        <fragment
+            android:id="@+id/nav_share"
+            android:name="com.prakhar.cabfairy.Profile"
+            android:label="@string/menu_share"
+            tools:layout="@layout/myprofile_fragment" />
+
+       <!-- <fragment
+            android:id="@+id/nav_send"
+            android:name="com.example.aeos.ui.send.SendFragment"
+            android:label="@string/menu_send"
+            tools:layout="@layout/fragment_send" />-->
+</navigation>

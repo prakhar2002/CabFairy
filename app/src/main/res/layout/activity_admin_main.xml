@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminMainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/aadharCard"
+                            >
+
+
+                            <TextView
+                                android:id="@+id/home_delhi_diamond"
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Aadhar Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/driving_licence"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Aadhar Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/rc_book"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="RC BOOK Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/taxi_insurance"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Taxi Insurance Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/fitness_certificate"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Fitness Certificate Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/taxi_photos"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Taxi Photos Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/bank_details"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Bank Details Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="130dp"
+                            android:layout_height="170dp"
+                            android:background="@drawable/round_blue"
+                            android:gravity="center"
+                            android:id="@+id/panCard"
+                            >
+
+
+                            <TextView
+                                android:layout_width="130dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:fontFamily="@font/montserrat"
+                                android:text="Pan Uploaded Drivers"
+                                android:textStyle="bold"
+                                android:textColor="#FFF"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

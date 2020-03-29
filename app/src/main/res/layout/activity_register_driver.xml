@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterDriver">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrolling">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/round_blue">
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/logo_layouts1"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+               <de.hdodenhof.circleimageview.CircleImageView
+                   android:layout_width="150dp"
+                   android:layout_height="150dp"
+                   android:src="@drawable/taxi"/>
+            </RelativeLayout>
+            <!-- -->
+
+            <!-- -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+
+                android:id="@+id/regist_layout"
+
+                android:background="@drawable/whitee"
+                android:layout_below="@id/logo_layouts1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="#000"
+                        android:text="Select Type"
+                        android:gravity="center"
+                        android:id="@+id/select_type"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_name"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_name"
+                            android:padding="3dp"
+                            android:fontFamily="@font/montserrat"
+
+                            android:inputType="text"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Name"
+                            />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_mobile"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                           <!-- <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                               android:src="@drawable/phn"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>
+-->
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_phone_no"
+                            android:padding="3dp"
+                            android:fontFamily="@font/montserrat"
+                            android:maxLength="10"
+                            android:inputType="number"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Phone Number"
+                            />
+
+                    </RelativeLayout>
+<!--
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_email"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                          <!--  <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/email"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>-->
+                        </RelativeLayout>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/Edit_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/montserrat"
+                            android:hint="Enter Email ID"
+                            android:inputType="textEmailAddress"
+                            android:padding="3dp"
+
+                            android:textSize="15dp"
+                            app:met_floatingLabel="normal" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_vehicle_no"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <!--  <ImageView
+                                  android:layout_width="20dp"
+                                  android:layout_height="match_parent"
+                                  android:src="@drawable/email"
+                                  android:layout_marginRight="10dp"
+                                  android:layout_alignParentRight="true"/>-->
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_vehicle_no"
+                            android:padding="3dp"
+                            android:inputType="text"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/montserrat"
+
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Vehicle Number"
+                            />
+
+                    </RelativeLayout>
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_vehicle_name"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <!--  <ImageView
+                                  android:layout_width="20dp"
+                                  android:layout_height="match_parent"
+                                  android:src="@drawable/email"
+                                  android:layout_marginRight="10dp"
+                                  android:layout_alignParentRight="true"/>-->
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_vehicle_name"
+                            android:padding="3dp"
+                            android:inputType="text"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/montserrat"
+
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Vehicle Name"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_pass"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                         <!--   <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/passsss"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>-->
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_pass"
+                            android:padding="3dp"
+                            android:inputType="textVisiblePassword"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/montserrat"
+
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Your Password"
+                            />
+
+                    </RelativeLayout>
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/check_conform_pass"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                           <!-- <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                               android:src="@drawable/passsss"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>-->
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/Edit_conform_pass"
+                            android:padding="3dp"
+                            android:inputType="textPassword"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/montserrat"
+
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter Your Confirm Password"
+                            />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="4dp">
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:textColor="#fff"
+                            android:id="@+id/submit_register"
+                            android:textStyle="bold"
+                            android:text="Submit"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textAllCaps="false"
+                            android:background="@drawable/blue"
+                            />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <!--  -->
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_Screen">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrolling">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/round_blue">
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/logo_layouts1"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+               <de.hdodenhof.circleimageview.CircleImageView
+                   android:layout_width="150dp"
+                   android:layout_height="150dp"
+                   android:src="@drawable/taxi"/>
+
+            </RelativeLayout>
+            <!-- -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:id="@+id/login_layout"
+                android:background="@drawable/whitee"
+                android:layout_below="@id/logo_layouts1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/email"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/userid_textinput"
+                            android:padding="3dp"
+                            android:inputType="number"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/montserrat"
+                            android:maxLength="10"
+                            app:met_floatingLabel="normal"
+                            android:hint="Mobile Number"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/passsss"
+                                android:layout_marginRight="10dp"
+                                android:layout_alignParentRight="true"/>
+                        </RelativeLayout>
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/passtextinput"
+                            android:padding="3dp"
+                            android:inputType="textPassword"
+                            android:fontFamily="@font/montserrat"
+
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            app:met_floatingLabel="normal"
+                            android:hint="Password"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/forgot_layout"
+
+                        android:layout_marginTop="3dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp">
+
+                           <!-- <CheckBox
+                                android:id="@+id/checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp" />
+-->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:gravity="center"
+                                android:text="Register Your Self"
+                                android:textColor="#000"
+                                android:id="@+id/register_ur_self"
+                                android:textSize="10dp"
+                                android:textStyle="bold" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:gravity="center"
+                                    android:text="Forgot Password?"
+                                    android:textColor="#000"
+                                    android:id="@+id/forget_password"
+                                    android:textSize="10dp"
+                                    android:layout_alignParentRight="true"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@id/forgot_layout">
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:textColor="#fff"
+                            android:id="@+id/login"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
+                            android:text="Submit"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/montserrat"
+                            android:background="@drawable/blue"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!-- -->
+
+
+            <!--  -->
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

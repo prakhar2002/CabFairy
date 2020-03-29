@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Help And Support"
+    android:gravity="center"
+    android:textSize="20dp"
+    android:textColor="#FFF"
+    android:fontFamily="@font/montserrat"
+    android:background="@color/red_color"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/whitee"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Get help 24 hours a day, 7 days a week right in the app. To speak with an agent, go to Help in your Driver app, then tap Call Support.
+
+Drivers everywhere wanted the option of contacting us by phone whenever they needed help or had a question about driving. Thanks to their feedback, offers phone support for drivers on the road or off.
+
+Whether you have a question about your account or want to report an incident, we’ll be ready to help, 24/7.
+
+To speak directly with a trained agent on the phone, go to Help in your Driver app and tap Call Support."
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:fontFamily="@font/montserrat"
+                android:background="@drawable/whitee"/>
+                </RelativeLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+</LinearLayout>
