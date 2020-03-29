@@ -26,7 +26,7 @@
                <de.hdodenhof.circleimageview.CircleImageView
                    android:layout_width="150dp"
                    android:layout_height="150dp"
-                   android:src="@drawable/taxi"/>
+                   android:src="@drawable/expresscab"/>
             </RelativeLayout>
             <!-- -->
 
@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
 
@@ -364,6 +365,64 @@
 
                     </RelativeLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:textColor="@color/red_color"
+                        android:gravity="center|right"
+                        android:id="@+id/verfication"
+                        android:layout_marginRight="10dp"
+                        android:text="*"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <!-- <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="match_parent"
+                            android:src="@drawable/phn"
+                             android:layout_marginRight="10dp"
+                             android:layout_alignParentRight="true"/>
+-->
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/otp"
+                            android:padding="3dp"
+                            android:fontFamily="@font/montserrat"
+                            android:maxLength="10"
+                            android:inputType="number"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15dp"
+                            app:met_floatingLabel="normal"
+                            android:hint="Enter OTP"
+                            />
+
+                    </RelativeLayout>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textColor="#fff"
+                        android:id="@+id/submit_otp"
+                        android:textStyle="bold"
+                        android:text="Submit"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textAllCaps="false"
+                        android:background="@drawable/blue"
+                        />
+                </LinearLayout>
+
             </RelativeLayout>
             <!--  -->
 

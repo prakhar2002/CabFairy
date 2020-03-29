@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     int current_index_id=-1;
     Bundle bundle; int get=0;
+    TextView  drivername;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -61,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 */
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity
         View header=navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString(Config.Login_USER_NAME,"-1");
+        drivername=header.findViewById(R.id.drivername);
+        //        driver_name=findViewById(R.id.driver_name);
         bundle=getIntent().getExtras();
         get=bundle.getInt("value");
         if(get==1){
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity
             getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,galleryFragment).commit();
         }
+        drivername.setText(name);
 
 
     }

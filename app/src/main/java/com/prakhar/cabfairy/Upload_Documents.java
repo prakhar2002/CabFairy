@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,6 +51,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,6 +73,8 @@ public class Upload_Documents extends AppCompatActivity {
     Button submit;
     ProgressDialog progressDialog;
     Context context;
+    CalendarView calendarView;
+    Dialog dialog;
     String extenion_photos,extenion_sign;
     int postion_check=-1,check_image=0,check_sign=0;
     int view_list=0,iiiiii=0,iiiip=0;
@@ -75,7 +82,8 @@ public class Upload_Documents extends AppCompatActivity {
     TableLayout tabLayout;
     String photooo="",signnn="";
     View view;
-    MaterialEditText card_num,name,issue_date;
+    TextView issue_date;
+    MaterialEditText card_num,name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,31 +123,36 @@ public class Upload_Documents extends AppCompatActivity {
             backside.setText("Upload Back Side Of Pan Card");
         }
 
-        issue_date.addTextChangedListener(new TextWatcher() {
+        issue_date.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                //setting data to array, when changed
+            public void onClick(View view) {
+                dialog = new Dialog(Upload_Documents.this);
+                dialog.setContentView(R.layout.calendar_pop);
+                calendarView = dialog.findViewById(R.id.calender);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setTitle("");
+                dialog.show();
+                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                    @Override
+                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                      String  date = dayOfMonth+"-"+(month+1)+"-"+year;
+
+                        java.util.Date c = Calendar.getInstance().getTime();
 /*
-                if(issue_date.getText().toString().length()==2){
-                    issue_date.setText(issue_date.getText().toString()+"-");
-                }else if(issue_date.getText().toString().length()==5){
-                    issue_date.setText(issue_date.getText().toString()+"-");
-                }*/
+                System.out.println("Current time => " + c);
+*/
+
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                        String formattedDate = df.format(c);
+                        issue_date.setText(date);
+                        dialog.dismiss();
+
+                    }
+                });
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                //blank
-            }
-
         });
+
 
 
         get_image_from_gallery.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +230,7 @@ public class Upload_Documents extends AppCompatActivity {
     submit.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!name.getText().toString().equals("")&&!card_num.getText().toString().equals("")&&!issue_date.getText().toString().equals(""))
+            if(!name.getText().toString().equals("")&&!card_num.getText().toString().equals("")&&!issue_date.getText().toString().equals("Issued date of Card DD-MM-YYYY"))
             {
                 if(open ==1) {
                     upload_data();

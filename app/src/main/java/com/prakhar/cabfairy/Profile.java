@@ -1,11 +1,20 @@
 package com.prakhar.cabfairy;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +35,7 @@ import com.prakhar.cabfairy.sever_classes.CustomRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +43,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends Fragment {
+import static android.app.Activity.RESULT_OK;
 
-    TextView driver_name,driver_status,car_name,driving_licence,Car_number,rc_book,taxi_insurance,fitness_certificate,pan_card;
+public class Profile extends Fragment {
+    private static int RESULT_LOAD_IMAGE = 1;
+    String extenion_photos;
+    Bitmap bitmap_profile_image;
+    LinearLayout get_image_from_gallery,get_student_sign;
+    private static final int PERMISSION_CODE = 1001;
+    TextView driver_name,driver_status,car_name,driving_licence,Car_number,rc_book,taxi_insurance,fitness_certificate,pan_card,selfie;
     CircleImageView profile_image;
     LinearLayout driver_details,driver_details_layout,cab_details,cab_details_layout,bank_details_layout,bank_details;
     Context context;
@@ -49,6 +65,7 @@ public class Profile extends Fragment {
         View root = inflater.inflate(R.layout.myprofile_fragment, container, false);
         profile_image=root.findViewById(R.id.profile_image);
         pan_card=root.findViewById(R.id.pan_card);
+        selfie=root.findViewById(R.id.selfie);
         taxi_insurance=root.findViewById(R.id.taxi_insurance);
         fitness_certificate=root.findViewById(R.id.fitness_certificate);
         rc_book=root.findViewById(R.id.rc_book);
@@ -112,6 +129,42 @@ public class Profile extends Fragment {
                     cab_details_layout.setVisibility(View.GONE);
                     cab_details_layout_count=0;
                 }
+            }
+        });
+
+        selfie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Context context = getActivity().getApplication();
+                    if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+
+                        String[] premission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        requestPermissions(premission, PERMISSION_CODE);
+                        Boolean b= checkWriteExternalPermission();
+                        if(b.equals(true)){
+                            Toast.makeText(getActivity(),"dsfdsf",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(i, RESULT_LOAD_IMAGE);
+                    }
+                    if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+
+                        String[] premission1 = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(premission1, PERMISSION_CODE);
+                        Boolean b= checkWriteExternalPermission();
+                        if(b.equals(true)){
+                            Toast.makeText(getContext(),"dsfdsf",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+
+                        Toast.makeText(getContext(),"abc",Toast.LENGTH_LONG).show();
+                    }
+                }
+
             }
         });
 
@@ -262,7 +315,111 @@ public class Profile extends Fragment {
     }
 
 
+    private boolean checkWriteExternalPermission()
+    {
+        String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        int res = getActivity().checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+                extenion_photos= picturePath.substring(picturePath.lastIndexOf("."));
+
+                bitmap_profile_image = BitmapFactory.decodeFile(picturePath);
+
+                bitmap_profile_image =  Bitmap.createScaledBitmap(bitmap_profile_image, 200, 200, true);
+/*
+                bitmap_profile_image= ImageNicer.decodeSampledBitmapFromResource(picturePath,300,200);
+*/              profile_image.setVisibility(View.VISIBLE);
+                profile_image.setImageBitmap(bitmap_profile_image);
+            upload_taxi_insurance_data();
+        }
+
+
+    }
+
+    private void upload_taxi_insurance_data() {
+        final ProgressDialog   progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
+        String  url= "http://expresscab.in/CarDriving/driver_Info.php?apicall=DriverProfilePic";
+        Map<String, String> params = new HashMap<String, String>();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String User_Id = sharedPreferences.getString(Config.User_Id,"-1");
+
+
+
+        params.put("image", StringtoBitmap(bitmap_profile_image));
+        params.put("driver_id",User_Id);
+
+
+
+
+        final CustomRequest jsObjRequest = new CustomRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("response: ", response.toString());
+                progressDialog.dismiss();
+
+
+                try {
+                    String error= response.getString("error");
+                    /*Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:+91-"+mobile));
+                    startActivity(intent);
+                    */
+                    if(error.equals("false")) {
+
+
+                        Toast.makeText(getContext(),"SuccessFully Submitted",Toast.LENGTH_LONG).show();
+
+
+
+                    }else{
+                        Toast.makeText(getContext(),"Re-Try",Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError response) {
+                Log.d("response: ", response.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy( 10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsObjRequest);
+    }
+
+    private String StringtoBitmap(Bitmap bitmap_profile_image) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap_profile_image.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imgByte=byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgByte,Base64.DEFAULT);
+    }
 
 }
 

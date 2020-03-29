@@ -103,7 +103,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:id="@+id/profile_image"
-                android:src="@drawable/taxi"/>
+                android:src="@drawable/expresscab"/>
 
         </RelativeLayout>
     </RelativeLayout>
@@ -181,9 +181,10 @@
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Driver Selfie"
+            android:text="Driver Photo"
             android:textColor="#000"
                 android:padding="8dp"
+                android:id="@+id/selfie"
                 android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:paddingLeft="5dp"

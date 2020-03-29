@@ -53,6 +53,9 @@ public class RegisterDriver extends AppCompatActivity {
         submit_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 if(!Edit_vehicle_name.getText().toString().equals("")&&!Edit_name.getText().toString().equals("")&&!Edit_phone_no.getText().toString().equals("")
                         &&!Edit_pass.getText().toString().equals("")
                 &&!Edit_conform_pass.getText().toString().equals("")&&!Edit_vehicle_no.getText().toString().equals("")){

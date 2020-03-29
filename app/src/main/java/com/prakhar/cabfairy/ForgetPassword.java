@@ -98,7 +98,7 @@ public class ForgetPassword extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(ForgetPassword.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String  url= "http://indiaprocess.com/CarDriving/driver_Info.php?apicall=ChangePassword";
+        String  url= "http://expresscab.in//CarDriving/driver_Info.php?apicall=ChangePassword";
 
       /*  SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String institute_id = sharedPreferences.getString(Config.Institute_id,"-1");*/
@@ -173,7 +173,7 @@ public class ForgetPassword extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(ForgetPassword.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        String  url= "http://indiaprocess.com/CarDriving/driver_Info.php?apicall=checkexistnumber";
+        String  url= "http://expresscab.in//CarDriving/driver_Info.php?apicall=checkexistnumber";
 
       /*  SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String institute_id = sharedPreferences.getString(Config.Institute_id,"-1");*/
