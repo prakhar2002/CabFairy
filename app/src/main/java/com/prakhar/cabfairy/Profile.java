@@ -3,6 +3,7 @@ package com.prakhar.cabfairy;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -31,11 +34,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.prakhar.cabfairy.sever_classes.Config;
 import com.prakhar.cabfairy.sever_classes.CustomRequest;
+import com.prakhar.cabfairy.sever_classes.ImageNicer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -135,11 +141,11 @@ public class Profile extends Fragment {
         selfie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+             /*   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     Context context = getActivity().getApplication();
-                    if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
 
-                        String[] premission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        String[] premission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         requestPermissions(premission, PERMISSION_CODE);
                         Boolean b= checkWriteExternalPermission();
                         if(b.equals(true)){
@@ -159,12 +165,37 @@ public class Profile extends Fragment {
                             Toast.makeText(getContext(),"dsfdsf",Toast.LENGTH_LONG).show();
                         }
                     }
-                    else {
-
-                        Toast.makeText(getContext(),"abc",Toast.LENGTH_LONG).show();
-                    }
                 }
+*/
 
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                        getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
+                else
+                {
+                    Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                    //your code
+                }*/
+
+
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    if(context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+
+                        String [] premission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        requestPermissions(premission,PERMISSION_CODE);
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, RESULT_LOAD_IMAGE);
+                    }else{
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, RESULT_LOAD_IMAGE);
+                    }
+                }else{
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, RESULT_LOAD_IMAGE);
+                }
             }
         });
 
@@ -325,13 +356,22 @@ public class Profile extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String[] projection = new String[]{
+                MediaStore.Images.ImageColumns._ID,
+                MediaStore.Images.ImageColumns.DATA,
+                MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.ImageColumns.DATE_TAKEN,
+                MediaStore.Images.ImageColumns.MIME_TYPE,
+                MediaStore.Images.ImageColumns.DISPLAY_NAME,
+        };
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+            Log.d("hldfdshfd","jflkkdsjfldjslkfjdslkfjkdslfjl");
+            Cursor cursor = getContext().getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
 
@@ -341,14 +381,54 @@ public class Profile extends Fragment {
 
                 extenion_photos= picturePath.substring(picturePath.lastIndexOf("."));
 
-                bitmap_profile_image = BitmapFactory.decodeFile(picturePath);
+            File sd = Environment.getExternalStorageDirectory();
+            String newString = picturePath.substring(picturePath.lastIndexOf("/")+1, picturePath.indexOf("."));
+            File image = new File(picturePath);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
+//            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
 
-                bitmap_profile_image =  Bitmap.createScaledBitmap(bitmap_profile_image, 200, 200, true);
-/*
-                bitmap_profile_image= ImageNicer.decodeSampledBitmapFromResource(picturePath,300,200);
-*/              profile_image.setVisibility(View.VISIBLE);
-                profile_image.setImageBitmap(bitmap_profile_image);
-            upload_taxi_insurance_data();
+//                bitmap_profile_image = BitmapFactory.decodeFile(picturePath);
+
+//                bitmap_profile_image =  Bitmap.createScaledBitmap(bitmap_profile_image, 200, 200, true);
+
+//                bitmap_profile_image= ImageNicer.decodeSampledBitmapFromResource(picturePath,300,200);
+              profile_image.setVisibility(View.VISIBLE);
+                profile_image.setImageBitmap(bitmap);
+//            upload_taxi_insurance_data();
+
+
+           /* final Cursor cursor = getContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    projection, null, null, MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC");
+            if (cursor.moveToFirst()) {
+
+
+                if (Build.VERSION.SDK_INT >= 29) {
+                    // You can replace '0' by 'cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)'
+                    // Note that now, you read the column '_ID' and not the column 'DATA'
+                    Uri imageUri= ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getInt(0));
+
+                    // now that you have the media URI, you can decode it to a bitmap
+                    try (ParcelFileDescriptor pfd = getContext().getContentResolver().openFileDescriptor(imageUri, "r")) {
+                        if (pfd != null) {
+
+                            String picturePath = String.valueOf(pfd.getFileDescriptor());
+
+                            bitmap_profile_image = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
+
+
+                            extenion_photos= picturePath.substring(picturePath.lastIndexOf("."));
+
+                            profile_image.setImageBitmap(bitmap_profile_image);
+                            upload_taxi_insurance_data();
+                        }
+                    } catch (IOException ex) {
+
+                    }
+                } else {
+                    // Repeat the code you already are using
+                }
+            }*/
         }
 
 
