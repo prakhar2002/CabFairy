@@ -69,7 +69,7 @@ public class Upload_Documents extends AppCompatActivity {
     Spinner choose_category;
 
     ImageView profile_image,student_sign;
-    Bitmap bitmap_profile_image,bitmap_signature;
+    Bitmap bitmap_profile_image=null,bitmap_signature=null;
     Button submit;
     ProgressDialog progressDialog;
     Context context;
@@ -230,7 +230,7 @@ public class Upload_Documents extends AppCompatActivity {
     submit.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!name.getText().toString().equals("")&&!card_num.getText().toString().equals("")&&!issue_date.getText().toString().equals("Issued date of Card DD-MM-YYYY"))
+            if(bitmap_signature!=null&&bitmap_profile_image!=null&&!name.getText().toString().equals("")&&!card_num.getText().toString().equals("")&&!issue_date.getText().toString().equals("Issued date of Card DD-MM-YYYY"))
             {
                 if(open ==1) {
                     upload_data();
@@ -256,6 +256,12 @@ public class Upload_Documents extends AppCompatActivity {
                     card_num.requestFocus();
 
                 }else if(issue_date.getText().toString().equals("")){
+                    Toast.makeText(Upload_Documents.this,"Please Enter the Issued Date",Toast.LENGTH_LONG).show();
+                    issue_date.requestFocus();
+                }else if(bitmap_signature==null){
+                    Toast.makeText(Upload_Documents.this,"Please Enter the Issued Date",Toast.LENGTH_LONG).show();
+                    issue_date.requestFocus();
+                }else if(bitmap_profile_image==null){
                     Toast.makeText(Upload_Documents.this,"Please Enter the Issued Date",Toast.LENGTH_LONG).show();
                     issue_date.requestFocus();
                 }
